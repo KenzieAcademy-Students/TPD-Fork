@@ -1,4 +1,4 @@
-# Project Title: PDT-Development
+# Project Title: Total Product Design (TPD)
 
 ## Technologies Used
 
@@ -8,6 +8,7 @@
 - [Nodemon](https://nodemon.io/)
 - [Concurrently](https://www.npmjs.com/package/concurrently)
 - [MongoDB](https://www.mongodb.com/)
+- [TailWind CSS](https://www.tailwindcss.com/)
 
 ## How to run the app
 
@@ -27,6 +28,13 @@
 - [Adobe Express](https://express.adobe.com/express-apps/logo-maker/preview)
 - [Unsplash](https://unsplash.com/)
 
+* What I learned
+* JWT access token and refresh token strategy
+* Full CRUD functionality for projects and user info
+* Utilizing Tailwind CSS for styling
+* Deployment to AWS EC2 instance using Ubuntu command line
+* Capstone project for 9 month full stack MERN program by Southern New Hampshire University's Kenzie Academy
+
 ## Retrospectives
 
 ### 12/19/2022 Sprint 2: Backend SetUp and Front End Staging
@@ -45,3 +53,7 @@ The team discussed canceling development on the messaging app to refocus on buil
 
 - Responsive design complications
 - Signout functionality
+
+## Future Development
+
+Admin portal for controlling all users' projects
