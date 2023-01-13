@@ -28,12 +28,13 @@
 - [Adobe Express](https://express.adobe.com/express-apps/logo-maker/preview)
 - [Unsplash](https://unsplash.com/)
 
-* What I learned
-* JWT access token and refresh token strategy
-* Full CRUD functionality for projects and user info
-* Utilizing Tailwind CSS for styling
-* Deployment to AWS EC2 instance using Ubuntu command line
-* Capstone project for 9 month full stack MERN program by Southern New Hampshire University's Kenzie Academy
+## What I learned
+
+- JWT access token and refresh token strategy
+- Full CRUD functionality for projects and user info
+- Utilizing Tailwind CSS for styling
+- Deployment to AWS EC2 instance using Ubuntu command line
+- Capstone project for 9 month full stack MERN program by Southern New Hampshire University's Kenzie Academy
 
 ## Retrospectives
 
