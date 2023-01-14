@@ -34,7 +34,14 @@ function Logout() {
     return <LoadingSpinner />;
   }
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <button
+      className="block  ml-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+      onClick={handleLogout}
+    >
+      Logout
+    </button>
+  );
 }
 
 export default Logout;

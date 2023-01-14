@@ -3,11 +3,11 @@ import { API_URL } from "../configs/constants";
 console.log(API_URL);
 
 export default axios.create({
-  baseURL: API_URL || "api/v1/",
+  baseURL: API_URL,
 });
 
 export const axiosPrivate = axios.create({
-  baseURL: API_URL || "api/v1/",
+  baseURL: API_URL,
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });

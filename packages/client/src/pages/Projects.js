@@ -50,18 +50,18 @@ export default function Projects({ setProjects, projects }) {
   return (
     <div className="w-full max-w-sm mx-auto align-middle">
       <form
-        className="bg-sky-900 bg-opacity-40 shadow-md rounded-b-lg px-8 pt-6 pb-8 mb-4"
+        className="bg-sky-900 bg-opacity-40 rounded-md px-8 pt-6 pb-8 mb-4"
         onSubmit={handleSubmitProject}
       >
         <div className="mb-4">
           <label
-            className="block text-amber-500 text-sm font-middle mb-2"
+            className="block text-sky-100 text-sm font-medium mb-2"
             htmlFor="projectName"
           >
             Project Name
           </label>
           <input
-            className="w-full text-sky-900 border-gray-300 rounded-lg shadow-sm focus:border-pink-800 focus:ring-sky-900"
+            className="bg-sky-800 rounded-md py-2 px-3 w-full text-white leading-tight focus:outline-none focus:shadow-outline-indigo"
             id="projectName"
             type="text"
             name="projectName"
@@ -71,13 +71,13 @@ export default function Projects({ setProjects, projects }) {
         </div>
         <div className="mb-4">
           <label
-            className="block text-amber-500 text-sm font-middle mb-2"
+            className="block text-sky-100 text-sm font-medium mb-2"
             htmlFor="companyName"
           >
             Company Name:
           </label>
           <input
-            className="w-full text-sky-900 border-gray-300 rounded-lg shadow-sm focus:border-pink-800 focus:ring-sky-900"
+            className="bg-sky-800 rounded-md py-2 px-3 w-full text-white leading-tight focus:outline-none focus:shadow-outline-indigo"
             id="companyName"
             type="text"
             name="companyName"
@@ -88,13 +88,13 @@ export default function Projects({ setProjects, projects }) {
         </div>
         <div className="mb-6">
           <label
-            className="block text-amber-500 text-sm font-middle mb-2"
+            className="block text-sky-100 text-sm font-medium mb-2"
             htmlFor="companyEmail"
           >
             Company Email
           </label>
           <input
-            className="w-full border-gray-300 rounded-lg shadow-sm focus:border-sky-900 focus:ring-sky-900"
+            className="bg-sky-800 rounded-md py-2 px-3 w-full text-white leading-tight focus:outline-none focus:shadow-outline-indigo"
             id="companyEmail"
             type="email"
             name="companyEmail"
@@ -105,13 +105,13 @@ export default function Projects({ setProjects, projects }) {
         <div className="mb-6">
           <label
             htmlFor="missionStatement"
-            className="font-middle mb-2 block text-sm  text-amber-500"
+            className="font-medium mb-2 block text-sm text-sky-100"
           >
             What is the mission statement?
           </label>
           <input
             name="missionStatement"
-            className="w-full border-gray-300 rounded-lg shadow-sm focus:border-sky-900 focus:ring-sky-900"
+            className="bg-sky-800 rounded-md py-2 px-3 w-full text-white leading-tight focus:outline-none focus:shadow-outline-indigo"
             type="text"
             value={formData.missionStatement}
             onChange={handleChange}
@@ -119,43 +119,39 @@ export default function Projects({ setProjects, projects }) {
         </div>
         <div className="mb-6">
           <label
-            className="block text-amber-500 text-sm font-middle mb-2"
             htmlFor="deadlines"
+            className="font-medium mb-2 block text-sm text-sky-100"
           >
-            What is the deadline?
+            What are the deadlines for this project?
           </label>
           <input
-            className="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            id="deadlines"
-            type="date"
             name="deadlines"
+            className="bg-sky-800 rounded-md py-2 px-3 w-full text-white leading-tight focus:outline-none focus:shadow-outline-indigo"
+            type="date"
             value={formData.deadlines}
             onChange={handleChange}
           />
         </div>
         <div className="mb-6">
           <label
-            className="block text-amber-500 text-sm font-middle mb-2"
             htmlFor="projectDetails"
+            className="font-medium mb-2 block text-sm text-sky-100"
           >
-            Outline the Project details
+            Describe your project
           </label>
           <textarea
-            className="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            id="projectDetails"
-            type="text"
+            className="bg-sky-800 rounded-md py-2 px--full text-white leading-tight focus:outline-none focus:shadow-outline-indigo h-32"
             name="projectDetails"
             value={formData.projectDetails}
             onChange={handleChange}
-          />
+          ></textarea>
         </div>
-
         <div className="flex items-center justify-between">
           <button
-            className="bg-amber-500 hover:bg-slate-800 text-pink-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto"
+            className="bg-amber-500 hover:bg-pink-700 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline-indigo"
             type="submit"
           >
-            Submit Proposal
+            Submit Project
           </button>
         </div>
       </form>

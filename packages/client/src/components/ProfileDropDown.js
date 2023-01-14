@@ -24,7 +24,11 @@ const ProfileDropdown = ({ isLoggedIn }) => {
       />
 
       {isLoggedIn ? (
-        <>
+        <div
+          className={`relative right-0 z-10 ${
+            isOpen ? "block" : "hidden"
+          } max-h-screen`}
+        >
           {isOpen && (
             <ul className="absolute right-0 w-36 px-4 py-2 text-sm font-medium leading-5 text-gray-700 bg-white rounded-md shadow-xl hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
               <li className="right-0 w-auto px-4 py-2 text-sm font-medium leading-5 text-gray-700 bg-white rounded-md shadow-xl hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
@@ -42,7 +46,7 @@ const ProfileDropdown = ({ isLoggedIn }) => {
               </li>
             </ul>
           )}
-        </>
+        </div>
       ) : (
         <>
           {isOpen && (

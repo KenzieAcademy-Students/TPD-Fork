@@ -23,12 +23,14 @@ import {
   PrivateRoute,
   ErrorBoundary,
 } from "./components";
+import Banking from "./components/DesignTemplates/HomePages/Banking";
+import Restaurant from "./components/DesignTemplates/HomePages/Restaurant";
 
 function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <NavBarComp className="sticky" />
+        <NavBarComp />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -36,6 +38,8 @@ function App() {
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/ideas" element={<TemplatesPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/bankhome" element={<Banking />} />
+          <Route path="/restaurant" element={<Restaurant />} />
 
           <Route path="/edit-details" element={<PrivateRoute />}>
             <Route path="/edit-details" element={<EditDetails />} />

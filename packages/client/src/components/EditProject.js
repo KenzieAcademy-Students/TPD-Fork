@@ -54,9 +54,9 @@ export default function EditProject() {
   }
 
   return (
-    <div className="w-full max-w-sm mx-auto align-middle">
+    <div className="w-full max-w-sm mx-auto align-middle sm:w-4/5 sm:mx-auto">
       <form
-        className="bg-slate-800 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="bg-slate-800 shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-5"
         onSubmit={handleSubmitProject}
       >
         <div className="mb-4">
