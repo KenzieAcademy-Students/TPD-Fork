@@ -6,12 +6,11 @@ const verifyJWT = require("../middleware/verifyJWT");
 //sign up, no verify JWT needed.
 router.post("/signup", userController.signup);
 
-router.use(verifyJWT);
+// router.use(verifyJWT);
 //authenticate after this
 
 router.route("/").get(userController.getAllUsers);
 router.route("/me").get(userController.getMe);
-
 
 router.route("/update").patch(userController.updateMe);
 

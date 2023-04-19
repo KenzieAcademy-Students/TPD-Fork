@@ -13,14 +13,10 @@ exports.getAllProjects = catchAsync(async (req, res, next) => {
       select: ["Name"],
     },
   ];
-  const projects = await Project.find().populate(populateQuery);
-  res.status(200).json({
-    status: "success",
-    results: projects.length,
-    data: {
-      projects,
-    },
-  });
+  const projects = await Project.find();
+  let range = 100;
+  res.setHeader("Content-Range", range);
+  res.status(200).json(projects);
 });
 
 exports.getProjectById = catchAsync(async (req, res, next) => {

@@ -14,25 +14,32 @@ export default function Projects({ setProjects, projects }) {
 
   const [formData, setFormData] = useState(initialValues);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const axios = useAxiosPrivate();
 
   const handleSubmitProject = async (e) => {
     e.preventDefault();
 
-    setIsLoading(true);
+    const errors = validateForm(formData);
+    setErrors(errors);
 
-    try {
-      const response = await axios.post(`/project`, formData);
-      console.log(response);
+    if (Object.keys(errors).length === 0) {
+      // Only submit if there are no errors
+      setIsLoading(true);
 
-      setProjects([response.data, ...projects]);
+      try {
+        const response = await axios.post(`/project`, formData);
+        console.log(response.response.status);
 
-      setFormData(initialValues);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
+        setProjects([response.data, ...projects]);
+
+        setFormData(initialValues);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -42,6 +49,22 @@ export default function Projects({ setProjects, projects }) {
       [e.target.name]: e.target.value,
     });
   };
+  const validateForm = (formData) => {
+    const errors = {};
+    if (!formData.projectName) {
+      errors.projectName = "Please enter a Project Name.";
+    }
+
+    if (!formData.missionStatement) {
+      errors.missionStatement = "Please enter a mission statement.";
+    }
+    if (!formData.projectDetails) {
+      errors.projectDetails = "Please enter the projects details.";
+    }
+
+    return errors;
+  };
+  console.log(errors);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -68,6 +91,11 @@ export default function Projects({ setProjects, projects }) {
             value={formData.projectName}
             onChange={handleChange}
           />
+          {errors.projectName && (
+            <p className="text-red-500 text-xs italic">
+              {errors.projectName}
+            </p>
+          )}
         </div>
         <div className="mb-4">
           <label
@@ -101,6 +129,11 @@ export default function Projects({ setProjects, projects }) {
             value={formData.companyEmail}
             onChange={handleChange}
           />
+          {errors.companyEmail && (
+            <p className="text-red-500 text-xs italic">
+              {errors.companyEmail}
+            </p>
+          )}
         </div>
         <div className="mb-6">
           <label
@@ -116,6 +149,11 @@ export default function Projects({ setProjects, projects }) {
             value={formData.missionStatement}
             onChange={handleChange}
           />
+          {errors.missionStatement && (
+            <p className="text-red-500 text-xs italic">
+              {errors.missionStatement}
+            </p>
+          )}
         </div>
         <div className="mb-6">
           <label
@@ -145,6 +183,11 @@ export default function Projects({ setProjects, projects }) {
             value={formData.projectDetails}
             onChange={handleChange}
           ></textarea>
+          {errors.projectDetails && (
+            <p className="text-red-500 text-xs italic">
+              {errors.projectDetails}
+            </p>
+          )}
         </div>
         <div className="flex items-center justify-between">
           <button

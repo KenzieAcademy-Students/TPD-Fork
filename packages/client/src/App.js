@@ -14,6 +14,10 @@ import {
   Projects,
 } from "./pages";
 
+import AdminPanel from "./admin";
+
+import { PostList } from "./posts";
+
 import {
   NavBarComp,
   UserProjects,
@@ -29,6 +33,8 @@ import Restaurant from "./components/DesignTemplates/HomePages/Restaurant";
 function App() {
   return (
     <ErrorBoundary>
+      {/* <AdminPanel /> */}
+
       <Router>
         <NavBarComp />
         <Routes>

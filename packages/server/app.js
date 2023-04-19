@@ -31,6 +31,10 @@ const app = express();
 app.use(credentials);
 app.use(logger);
 app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Expose-Headers", "Content-Range");
+  next();
+});
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
@@ -41,6 +45,7 @@ app.use(`${API_URL}/auth`, require("./routes/authRoutes"));
 app.use(`${API_URL}/users`, require("./routes/userRoute"));
 app.use(`${API_URL}/tasks`, require("./routes/taskRoute"));
 app.use(`${API_URL}/project`, require("./routes/projectsRoute"));
+app.use(`${API_URL}/categories`, require("./routes/categories"));
 
 if (NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));

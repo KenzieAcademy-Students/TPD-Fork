@@ -6,8 +6,30 @@ const { JWT_EXPIRES_IN, JWT_SECRET } = require("../config/constants");
 
 //http://localhost:3001/api/v1/users /* Postman request URL for testing */ //protected with bearer
 exports.getAllUsers = async (req, res, next) => {
-  const users = await User.find();
-  res.status(200).json({
+  // Extract the _end, _order, _sort, and _start parameters from the query string
+  const { _end, _order, _sort, _start } = req.query;
+
+  // Convert _end and _start to numbers
+  const endIndex = parseInt(_end, 10) || 10;
+  const startIndex = parseInt(_start, 10) || 0;
+
+  // Create a sort object based on the _sort and _order parameters
+  const sort = {};
+  if (_sort) {
+    sort[_sort] = _order === "ASC" ? 1 : -1;
+  }
+
+  // Fetch the users using the startIndex, endIndex, and sort parameters
+  const users = await User.find()
+    .sort(sort)
+    .skip(startIndex)
+    .limit(endIndex - startIndex);
+
+  // Get the total count of users for the X-Total-Count header
+  const count = await User.countDocuments();
+
+  // Set the X-Total-Count header and return the paginated list of users
+  res.status(200).set("X-Total-Count", count).json({
     status: "success",
     results: users.length,
     data: {

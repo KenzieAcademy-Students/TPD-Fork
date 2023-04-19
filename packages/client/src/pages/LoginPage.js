@@ -105,7 +105,7 @@ export default function LoginPage(props) {
             />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
-                <label htmlFor="userNamne" className="sr-only">
+                <label htmlFor="userName" className="sr-only">
                   Username
                 </label>
                 <input
