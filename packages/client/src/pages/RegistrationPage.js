@@ -1,25 +1,22 @@
 import { useState } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
 import axios from "../hooks/useAxios";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 
-export default function Example() {
-  const initialValues = {
-    firstName: "",
-    lastName: "",
-    userName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    error: "",
-  };
-
+const initialValues = {
+  firstName: "",
+  lastName: "",
+  userName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  error: "",
+};
+export default function RegistrationPage() {
   const [formData, setFormData] = useState(initialValues);
   const [isLoading, setIsLoading] = useState(false);
-  const [value, setValue] = useLocalStorage("user", null);
 
   const navigate = useNavigate();
 
@@ -41,32 +38,33 @@ export default function Example() {
         withCredentials: true,
       });
 
-      const auth = {
-        firstName: response.data.data.user.firstName,
-        lastName: response.data.data.user.lastName,
-        userName: response.data.data.user.userName,
-        email: response.data.data.user.email,
-      };
-
-      setValue(auth);
-
-      navigate("/login");
+      if (response) {
+        navigate("/login");
+      }
     } catch (err) {
+      console.log(err);
       if (!err?.response) {
-        setFormData(
+        setFormData({
           ...formData,
-          (formData.error = "No Server Response")
-        );
+          error: "No Server Response",
+        });
       } else if (err.response?.status === 422) {
-        setFormData(
+        setFormData({
           ...formData,
-          (formData.error = "User already exists.")
-        );
+          error: "User already exists.",
+        });
+      } else if (
+        err.response?.data.error === "Passwords must match"
+      ) {
+        setFormData({
+          ...formData,
+          error: "Passwords do not match.",
+        });
       } else {
-        setFormData(
+        setFormData({
           ...formData,
-          (formData.error = "Registration failed.")
-        );
+          error: "Registration failed.",
+        });
       }
     } finally {
       setIsLoading(false);
@@ -233,6 +231,9 @@ export default function Example() {
                 </span>
                 Register
               </button>
+              <div className="text-red-500 mt-2">
+                {formData.error && formData.error}
+              </div>
             </div>
           </form>
         </div>

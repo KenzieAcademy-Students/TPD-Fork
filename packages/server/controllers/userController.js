@@ -67,16 +67,6 @@ exports.getUser = asyncHandler(async (req, res, next) => {
   }
 });
 
-exports.createUser = async (req, res, next) => {
-  const newUser = await User.create(req.body);
-  res.status(201).json({
-    status: "success",
-    data: {
-      user: newUser,
-    },
-  });
-};
-
 exports.updateUser = async (req, res, next) => {
   const user = await User.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -104,6 +94,11 @@ exports.deleteUser = asyncHandler(async (req, res, next) => {
   });
 });
 
+/**
+
+* path /api/v1/users/signup
+* POST
+*/
 exports.signup = asyncHandler(async (req, res, next) => {
   const {
     firstName,
@@ -115,7 +110,14 @@ exports.signup = asyncHandler(async (req, res, next) => {
     role,
   } = req.body;
 
-  if (!email || !password || !userName) {
+  if (
+    !email ||
+    !password ||
+    !userName ||
+    !firstName ||
+    !lastName ||
+    !confirmPassword
+  ) {
     return next(new Error("Please enter all the fields.", 400));
   }
 
@@ -127,17 +129,17 @@ exports.signup = asyncHandler(async (req, res, next) => {
     return res.status(422).json({ error: "User already exists" });
   }
   if (password !== confirmPassword) {
-    return next(new Error("Passwords do not match", 422));
+    return res.status(400).json({ error: "Passwords must match" });
   }
   const hashedPassword = await bcrypt.hash(password, 12);
 
   //the order of these must match the order they come from in the front
-  const newUser = await User.create({
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
+  let newUser = await User.create({
+    firstName,
+    lastName,
+    email,
     passwordHash: hashedPassword,
-    userName: userName,
+    userName,
     role,
   });
 
@@ -157,6 +159,11 @@ exports.signup = asyncHandler(async (req, res, next) => {
     httpOnly: true,
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
+
+  newUser = newUser.toJSON();
+  delete newUser.passwordHash;
+  delete newUser.__v;
+
   res.status(201).json({
     status: "success",
     token,
@@ -194,7 +201,7 @@ exports.updateMe = asyncHandler(async (req, res) => {
   const updatedUser = await User.findByIdAndUpdate(req.id, req.body, {
     new: true,
   }).select("-passwordHash");
-  console.log(updatedUser);
+
   res.status(200).json(updatedUser);
 });
 
