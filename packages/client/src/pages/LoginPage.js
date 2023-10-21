@@ -36,7 +36,7 @@ export default function LoginPage(props) {
     try {
       const response = await axios.post(
         "/auth/login",
-        JSON.stringify({ userName, password }),
+        { userName, password },
 
         {
           headers: { "Content-Type": "application/json" },
