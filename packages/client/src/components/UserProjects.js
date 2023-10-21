@@ -89,9 +89,16 @@ const UserProjects = () => {
             key={project._id}
             className="bg-white rounded shadow-lg shadow-sky-800 p-4 mb-4 "
           >
-            <h3 className="text-xl font-semibold text-slate-800">
-              Project Name: {project.projectName}
-            </h3>
+            <div className="inline-flex">
+              <h3 className="text-xl font-semibold text-slate-800">
+                Project Name:
+              </h3>
+              <span className="ml-2 mt-1 font-medium">
+                {" "}
+                {project.projectName}
+              </span>
+            </div>
+
             <ul className="list-disc pl-4 font-light  text-sky-900 leading-loose">
               Project Details:{" "}
               {project.projectDetails &&
@@ -101,13 +108,13 @@ const UserProjects = () => {
                     <li key={project._id}>{detail}</li>
                   ))}
             </ul>
-            <p className=" text-pink-800">
+            <p className=" text-pink-800 py-2">
               Mission statement: {project.missionStatement}
             </p>
             <p className=" text-pink-800">
               Company Name: {project.companyName}
             </p>
-            <p className=" text-amber-800">
+            <p className=" text-amber-800 py-2">
               Deadline: {FormatDate(project.deadlines)}
             </p>
             <button
