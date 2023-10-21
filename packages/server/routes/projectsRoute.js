@@ -16,7 +16,7 @@ router
 
 router
   .route("/:id")
-  .get(projectController.getProjectById)
+  .get(verifyJWT, projectController.getProjectById)
   .patch(projectController.updateProject)
   .delete(projectController.deleteProject);
 
