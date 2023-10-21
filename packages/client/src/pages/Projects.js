@@ -30,7 +30,6 @@ export default function Projects({ setProjects, projects }) {
 
       try {
         const response = await axios.post(`/project`, formData);
-        console.log(response.response.status);
 
         setProjects([response.data, ...projects]);
 
@@ -84,7 +83,7 @@ export default function Projects({ setProjects, projects }) {
             Project Name
           </label>
           <input
-            className="bg-sky-800 rounded-md py-2 px-3 w-full text-white leading-tight focus:outline-none focus:shadow-outline-indigo"
+            className="bg-white rounded-md py-2 px-3 w-full text-black leading-tight focus:outline-none focus:shadow-outline-indigo"
             id="projectName"
             type="text"
             name="projectName"
@@ -105,7 +104,7 @@ export default function Projects({ setProjects, projects }) {
             Company Name:
           </label>
           <input
-            className="bg-sky-800 rounded-md py-2 px-3 w-full text-white leading-tight focus:outline-none focus:shadow-outline-indigo"
+            className="bg-white rounded-md py-2 px-3 w-full text-black leading-tight focus:outline-none focus:shadow-outline-indigo"
             id="companyName"
             type="text"
             name="companyName"
@@ -122,7 +121,7 @@ export default function Projects({ setProjects, projects }) {
             Company Email
           </label>
           <input
-            className="bg-sky-800 rounded-md py-2 px-3 w-full text-white leading-tight focus:outline-none focus:shadow-outline-indigo"
+            className="bg-white rounded-md py-2 px-3 w-full text-black leading-tight focus:outline-none focus:shadow-outline-indigo"
             id="companyEmail"
             type="email"
             name="companyEmail"
@@ -144,7 +143,7 @@ export default function Projects({ setProjects, projects }) {
           </label>
           <input
             name="missionStatement"
-            className="bg-sky-800 rounded-md py-2 px-3 w-full text-white leading-tight focus:outline-none focus:shadow-outline-indigo"
+            className="bg-white rounded-md py-2 px-3 w-full text-black font-bold leading-tight focus:outline-none focus:shadow-outline-indigo"
             type="text"
             value={formData.missionStatement}
             onChange={handleChange}
@@ -164,7 +163,7 @@ export default function Projects({ setProjects, projects }) {
           </label>
           <input
             name="deadlines"
-            className="bg-sky-800 rounded-md py-2 px-3 w-full text-white leading-tight focus:outline-none focus:shadow-outline-indigo"
+            className="bg-white rounded-md py-2 px-3 w-full text-black leading-tight focus:outline-none focus:shadow-outline-indigo"
             type="date"
             value={formData.deadlines}
             onChange={handleChange}
@@ -178,10 +177,12 @@ export default function Projects({ setProjects, projects }) {
             Describe your project
           </label>
           <textarea
-            className="bg-sky-800 rounded-md py-2 px--full text-white leading-tight focus:outline-none focus:shadow-outline-indigo h-32"
+            className="bg-white rounded-md py-2 px--full text-black leading-tight focus:outline-none focus:shadow-outline-indigo h-32"
             name="projectDetails"
             value={formData.projectDetails}
             onChange={handleChange}
+            rows={4}
+            cols={35}
           ></textarea>
           {errors.projectDetails && (
             <p className="text-red-500 text-xs italic">
