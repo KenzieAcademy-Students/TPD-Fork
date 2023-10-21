@@ -27,7 +27,7 @@ exports.login = asyncHandler(async (req, res, next) => {
     userName: userName,
   }).exec();
 
-  const { firstName, lastName, email, id } = user; //information to send back to the client
+  const { firstName, lastName, email, id } = user ?? {}; //information to send back to the client
 
   if (!user) {
     return res
